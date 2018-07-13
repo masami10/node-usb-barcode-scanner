@@ -21,7 +21,7 @@ function getDevices() {
   return HID.devices();
 }
 
-usbScanner.prototype.init = function(options) {
+usbScanner.prototype.init = function (options) {
   var vendorId = options.vendorId || 1534;
   var devicePath = options.devicePath || null;
 
@@ -82,7 +82,7 @@ usbScanner.prototype.init = function(options) {
   this.startScanning();
 };
 
-usbScanner.prototype.startScanning = function() {
+usbScanner.prototype.startScanning = function () {
   //empty array for barcode bytes
   var bcodeBuff = [];
   //string variable to hold barcode string
@@ -104,9 +104,13 @@ usbScanner.prototype.startScanning = function() {
       }
     }
   });
+
+  this.device.on("error", error => {
+    this.emit("error", error);
+  });
 };
 
-usbScanner.prototype.stopScanning = function() {
+usbScanner.prototype.stopScanning = function () {
   this.device.close();
 };
 
