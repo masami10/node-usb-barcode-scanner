@@ -114,4 +114,4 @@ usbScanner.prototype.stopScanning = function () {
   this.device.close();
 };
 
-module.exports = { usbScanner: usbScanner, getDevices: getDevices };
+module.exports = { usbScanner: usbScanner, getDevices: getDevices, stopScanning: stopScanning };
